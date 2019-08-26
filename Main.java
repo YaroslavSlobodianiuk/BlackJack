@@ -1,20 +1,16 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
         CardRandom cardRandom = new CardRandom();
         Scanner in = new Scanner(System.in);
         GetWinner getWinner = new GetWinner();
-        Card card = new Card();
+        Deck deck = new Deck();
 
-        String[] arrayOfCard;
-        arrayOfCard = card.createDeck();
+        deck.addToList();
+
         int result = 0;
         int numberOfPlayer;
 
@@ -30,21 +26,20 @@ public class Main {
                 for (int i = 0;i < 2;i++){
 
                     int sum[] = new int[2];
-                    String test = cardRandom.doStringRandom(arrayOfCard);
-                    System.out.println(test);
-                    while (test == null) {
-                        if (test == null) {
+                    Card card = deck.getCard();
+                    System.out.println(card);
+                    while (card == null) {
+                        if (card == null) {
                             System.out.println("NULL");
-                            test = cardRandom.doStringRandom(arrayOfCard);
-                            System.out.println(test);
+                            card = deck.getCard();
+                            System.out.println(card);
                         } else {
                             break;
                         }
                     }
-                    sum[i] = cardRandom.defineValueOfCard();
+                    sum[i] = cardRandom.defineValueOfCard(card.getName());
                     System.out.println(sum[i]);
                     result += sum[i];
-                    cardRandom.removeString(arrayOfCard);
                     if (result == 22){
                         System.out.println("Gold Jack");
                     }
@@ -57,20 +52,20 @@ public class Main {
             while (true) {
                 System.out.println("- Receive one more card! - 1\n- Finish - 0");
                 if (in.nextInt() == 0) break;
-                String tmp = cardRandom.doStringRandom(arrayOfCard);
-                System.out.println(tmp);
-                while (tmp == null) {
-                    if (tmp == null){
+                Card card = deck.getCard();
+                System.out.println(card);
+                while (card == null) {
+                    if (card == null){
                         System.out.println("NULL");
-                        tmp = cardRandom.doStringRandom(arrayOfCard);
-                        System.out.println(tmp);
+                        card = deck.getCard();
+                        System.out.println(card);
                     } else {
                         break;
                     }
                 }
-                int test = cardRandom.defineValueOfCard();
-                System.out.println(test);
-                result +=test;
+                int plus = cardRandom.defineValueOfCard(card.getName());
+                System.out.println(plus);
+                result +=plus;
                 System.out.println(result);
                 if (result > 21) {
                     System.out.println("You lost");
