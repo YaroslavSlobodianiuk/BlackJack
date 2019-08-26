@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class CardRandom {
     Random random = new Random();
-    Card cardForRandom = new Card();
-    int defineValueOfCard;
+
+    int defineValueOfCard = -1;
     String a;
     int b;
     String[] arrayOfCards;
@@ -15,46 +15,45 @@ public class CardRandom {
         b = randomStringIndex;
         return array[randomStringIndex];
     }
-    public int defineValueOfCard() {
-        if (a.contains("ace")) {
+    public int defineValueOfCard(String name) {
+        if (name.contains("Ace")) {
             defineValueOfCard = 11;
         }
-        if (a.contains("two")) {
+        if (name.contains("Two")) {
             defineValueOfCard = 2;
         }
-        if (a.contains("three")) {
+        if (name.contains("Three")) {
             defineValueOfCard = 3;
         }
-        if (a.contains("four")) {
+        if (name.contains("Four")) {
             defineValueOfCard = 4;
         }
-        if (a.contains("five")) {
+        if (name.contains("Five")) {
             defineValueOfCard = 5;
         }
-        if (a.contains("six")) {
+        if (name.contains("Fix")) {
             defineValueOfCard = 6;
         }
-        if (a.contains("seven")) {
+        if (name.contains("Seven")) {
             defineValueOfCard = 7;
-
         }
-        if (a.contains("eight")) {
+        if (name.contains("Eight")) {
             defineValueOfCard = 8;
         }
-        if (a.contains("nine")) {
+        if (name.contains("Nine")) {
             defineValueOfCard = 9;
         }
-        if (a.contains("ten")) {
+        if (name.contains("Ten")) {
             defineValueOfCard = 10;
         }
-        if (a.contains("jack")) {
-            defineValueOfCard = 2;
+        if (name.contains("Jack")) {
+            defineValueOfCard = 10;
         }
-        if (a.contains("queen")) {
-            defineValueOfCard = 3;
+        if (name.contains("Queen")) {
+            defineValueOfCard = 10;
         }
-        if (a.contains("king")) {
-            defineValueOfCard = 4;
+        if (name.contains("King")) {
+            defineValueOfCard = 10;
         }
         return defineValueOfCard;
     }
