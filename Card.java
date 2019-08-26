@@ -1,40 +1,31 @@
-import java.util.*;
+public class Card {
+    String suit;
+    String name;
+    Integer value;
 
-public class Deck {
-
-
-    String[] suit = {"Spades", "Diamonds", "Hearts", "Clubs"};
-    String[] name = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-    int counter = 0;
-
-
-
-    List<Card> list = new ArrayList<Card>();
-    List<String> stringList = new ArrayList<>();
-
-    public void addToList() {
-        for (int i = 0; i < suit.length; i++){
-            for (int j = 0; j < name.length; j++){
-                Card tmp = new Card(suit[i], name[j]);
-                list.add(tmp);
-            }
-        }
-        Collections.shuffle(list);
+    public Card(String suit, String name){
+        this.suit = suit;
+        this.name = name;
+        //this.value = value;
+    }
+    /*public Card(String name){
+        this.name = name;
+    } */
+    public Card(Integer value){
+        this.value = value;
     }
 
-
-    public Card getCard() {
-        //Card tmp = list.get(counter);
-        //list.remove(counter);
-        //return tmp;
-        Card tmp = list.get(counter);
-        list.remove(counter);
-        counter++;
-        return tmp;
+    public String getSuit(){
+        return suit;
     }
-    /*public Integer test(){
-        System.out.println(list.get(0));
-            return  list.get(0).getValue();
-
+    public String getName(){
+        return name;
+    }
+    /*public Integer getValue(){
+        return value;
     }*/
+    @Override
+    public String toString() {
+        return suit + " " + name;
+    }
 }
