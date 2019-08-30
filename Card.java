@@ -3,17 +3,12 @@ public class Card {
     String name;
     Integer value;
 
-    public Card(String suit, String name){
+    public Card(String suit, String name, Integer value){
         this.suit = suit;
         this.name = name;
-        //this.value = value;
-    }
-    /*public Card(String name){
-        this.name = name;
-    } */
-    public Card(Integer value){
         this.value = value;
     }
+
 
     public String getSuit(){
         return suit;
@@ -21,9 +16,9 @@ public class Card {
     public String getName(){
         return name;
     }
-    /*public Integer getValue(){
+    public Integer getValue(){
         return value;
-    }*/
+    }
     @Override
     public String toString() {
         return suit + " " + name;
