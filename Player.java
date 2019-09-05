@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-        String name;
-        List<Card> cards;
+    String name;
+    List<Card> cards;
     public Player (String name, List<Card> cards) {
         this.name = name;
         this.cards = cards;
@@ -14,5 +14,8 @@ public class Player {
     }
     public List<Card> getCards(){
         return cards;
+    }
+    public String toString() {
+        return name + " with " + cards;
     }
 }
