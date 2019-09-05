@@ -6,63 +6,51 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CardRandom cardRandom = new CardRandom();
+
         Scanner in = new Scanner(System.in);
         GetWinner getWinner = new GetWinner();
         Deck deck = new Deck();
-        PList pList = new PList();
-
-
-        List<String> playerList = new ArrayList<String>();
-        List<String> playerCards = new ArrayList<String>();
+        
+        List<Player> players = new ArrayList<>();
+        List<String> nameOfPlayer = new ArrayList<>();
+        
         deck.addToList();
-
-
+        
         int result = 0;
         int numberOfPlayer;
         int counter = 1;
-        int playerNumber = 0;
-
-
-
-
+        
         System.out.println("BlackJack");
         System.out.println("Enter number of players");
         numberOfPlayer = in.nextInt();
 
         int[] arrayOfResults = new int[numberOfPlayer];
-
+        Player[] player = new Player[numberOfPlayer];
 
         for (int i = 0; i < numberOfPlayer; i++) {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter name of " + counter + " player");
+            
             String name = scanner.nextLine();
-            playerList.add(name);
+            nameOfPlayer.add(name);
             counter++;
         }
 
         for (int k = 0; k < numberOfPlayer; k++){
-            System.out.println("Player " + playerList.get(k));
+            System.out.println("Player " + nameOfPlayer.get(k));
             System.out.println("- In order to receive cards tap 1\n- Exit - 0");
+            
+            player[k] = new Player(nameOfPlayer.get(k), new ArrayList<>());
+            
             if (in.nextInt() == 1) {
                 for (int i = 0;i < 2;i++){
 
                     int sum[] = new int[2];
                     Card card = deck.getCard();
                     System.out.println(card);
-                    playerCards.add(card.getSuit().concat(" ").concat(card.getName()));
-
-                    while (card == null) {
-                        if (card == null) {
-                            System.out.println("NULL");
-                            card = deck.getCard();
-                            System.out.println(card);
-                        } else {
-                            break;
-                        }
-                    }
-
+                    player[k].cards.add(card);
+                    
                     sum[i] = card.getValue();
                     System.out.println(sum[i]);
                     result += sum[i];
@@ -80,17 +68,8 @@ public class Main {
 
                 Card card = deck.getCard();
                 System.out.println(card);
-                playerCards.add(card.getSuit().concat(" ").concat(card.getName()));
+                player[k].cards.add(card);
 
-                while (card == null) {
-                    if (card == null){
-                        System.out.println("NULL");
-                        card = deck.getCard();
-                        System.out.println(card);
-                    } else {
-                        break;
-                    }
-                }
                 int plus = card.getValue();
                 System.out.println(plus);
                 result +=plus;
@@ -101,16 +80,12 @@ public class Main {
                 }
             }
             System.out.println("Finish! You have " + result + " points!");
-            pList.concatenateCardsAndPlayer(playerCards, playerList, playerNumber);
-            playerNumber++;
-            playerCards.clear();
+            
             arrayOfResults[k] = result;
             result = 0;
-
+            players.add(player[k]);
         }
-
-        getWinner.getWinner(arrayOfResults, numberOfPlayer, pList.getConcatenateListOfCardsAndPlayer());
-
+        getWinner.getWinner(arrayOfResults, numberOfPlayer, players);
     }
 
 }
