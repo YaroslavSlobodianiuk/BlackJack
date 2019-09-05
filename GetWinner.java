@@ -3,7 +3,7 @@ import java.util.List;
 public class GetWinner {
 
 
-    public int getWinner(int[] arrayOfResult, int numberOfPlayer, List<String> concatenateListOfCardsAndPlayer) {
+    public int getWinner(int[] arrayOfResult, int numberOfPlayer, List<Player> listOfPlayers) {
 
         int winner = -1;
         int maxValue = 0;
@@ -18,7 +18,7 @@ public class GetWinner {
         if (winner == -1){
             System.out.println("Everyone lost");
         } else {
-            System.out.print("Player " + concatenateListOfCardsAndPlayer.get(winner) + "cards WON");
+            System.out.print("Player " + listOfPlayers.get(winner) + "cards WON");
         }
         return winner;
     }
